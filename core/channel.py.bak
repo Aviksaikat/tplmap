@@ -1,7 +1,7 @@
 import requests
 import urllib3
 from utils.loggers import log
-import urllib.parse
+import urlparse
 from copy import deepcopy
 import utils.config
 
@@ -69,7 +69,7 @@ class Channel:
         
     def _parse_url(self):
 
-        url_path = urllib.parse.urlparse(self.url).path
+        url_path = urlparse.urlparse(self.url).path
 
         if not self.tag in url_path:
             return
@@ -134,16 +134,16 @@ class Channel:
         if not user_agent:
             user_agent = 'tplmap/%s' % self.args.get('version')
             
-        if not 'user-agent' in [ p.lower() for p in list(self.header_params.keys()) ]:
+        if not 'user-agent' in [ p.lower() for p in self.header_params.keys() ]:
             self.header_params['User-Agent'] = user_agent
 
     def _parse_post(self, all_injectable = False):
 
         if self.args.get('data'):
 
-            params_dict_list = urllib.parse.parse_qs(self.args.get('data'), keep_blank_values=True)
+            params_dict_list = urlparse.parse_qs(self.args.get('data'), keep_blank_values=True)
 
-            for param, value_list in list(params_dict_list.items()):
+            for param, value_list in params_dict_list.items():
 
                 self.post_params[param] = value_list
                 
@@ -166,9 +166,9 @@ class Channel:
             
     def _parse_get(self, all_injectable = False):
 
-        params_dict_list = urllib.parse.parse_qs(urllib.parse.urlsplit(self.url).query, keep_blank_values=True)
+        params_dict_list = urlparse.parse_qs(urlparse.urlsplit(self.url).query, keep_blank_values=True)
 
-        for param, value_list in list(params_dict_list.items()):
+        for param, value_list in params_dict_list.items():
 
             self.get_params[param] = value_list
             

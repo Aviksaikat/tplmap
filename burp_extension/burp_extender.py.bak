@@ -1,6 +1,6 @@
 from burp import IBurpExtender
-from .config_tab import ConfigTab
-from .scanner_check import ScannerCheck
+from config_tab import ConfigTab
+from scanner_check import ScannerCheck
 
 class BurpExtender( IBurpExtender ):
 

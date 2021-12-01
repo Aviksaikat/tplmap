@@ -1,6 +1,6 @@
 import json
 import base64
-from itertools import zip_longest
+from itertools import izip_longest
 import hashlib
 
 def quote(command):

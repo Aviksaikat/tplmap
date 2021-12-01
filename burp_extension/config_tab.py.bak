@@ -26,11 +26,11 @@ class ConfigTab( ITab, JPanel ):
         self._plugin_groups = {}
         for plugin in plugins:
             parent = plugin.__base__.__name__
-            if parent not in self._plugin_groups:
+            if not self._plugin_groups.has_key( parent ):
                 self._plugin_groups[ parent ] = []
             self._plugin_groups[ parent ].append( plugin )
         self._pluginCheckBoxes = []
-        for pluginGroup in list(self._plugin_groups.values()):
+        for pluginGroup in self._plugin_groups.values():
             for plugin in pluginGroup:
                 self._pluginCheckBoxes.append( PluginCheckBox( plugin ) )
 

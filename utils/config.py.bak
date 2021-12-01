@@ -12,7 +12,7 @@ with open(config_folder + "/../config.yml", 'r') as stream:
         config = yaml.load(stream, Loader=yaml.SafeLoader)
     except yaml.YAMLError as e:
         # logger is not yet loaded, print it roughly
-        print(('[!][%s] %s' % ('config', e)))
+        print('[!][%s] %s' % ('config', e))
 
 base_path = os.path.expanduser(config["base_path"])
 log_response = config["log_response"]
