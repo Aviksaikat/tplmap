@@ -1,22 +1,27 @@
-import json
 import base64
-from itertools import zip_longest
 import hashlib
+import json
+from itertools import zip_longest
+
 
 def quote(command):
-    return command.replace("\\", "\\\\").replace("\"", "\\\"")
+    return command.replace("\\", "\\\\").replace('"', '\\"')
+
 
 def base64encode(data):
     return base64.b64encode(data)
 
+
 def base64decode(data):
     return base64.b64decode(data)
 
-def chunkit( seq, n ):
+
+def chunkit(seq, n):
     """A generator to divide a sequence into chunks of n units."""
     while seq:
         yield seq[:n]
         seq = seq[n:]
+
 
 def md5(data):
     return hashlib.md5(data).hexdigest()
